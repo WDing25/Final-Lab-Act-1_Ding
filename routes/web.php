@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,15 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $users = User::all();
+        return view('dashboard',compact('users'));
+
     })->name('dashboard');
 });
 Route::get('/users','UserController@index')->name('user.index');
+// Route::get('/category',function(){
+//     return view('admin.category.category');
+// })->name('AllCat');
+
+//Category Routes
+Route::get('/all/category',[CategoryController::class,'index'])->name('AllCat');
