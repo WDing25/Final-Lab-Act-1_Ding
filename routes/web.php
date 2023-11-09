@@ -31,10 +31,15 @@ Route::middleware([
 
     })->name('dashboard');
 });
-Route::get('/users','UserController@index')->name('user.index');
+// Route::get('/users','UserController@index')->name('user.index');
 // Route::get('/category',function(){
 //     return view('admin.category.category');
 // })->name('AllCat');
 
 //Category Routes
 Route::get('/all/category',[CategoryController::class,'index'])->name('AllCat');
+
+Route::post('/category/add',[CategoryController::class,'AddCat'])->name('add.category');
+Route::get('/category/edit/{id}',[CategoryController::class,'Edit']);
+Route::post('/category/update/{id}',[CategoryController::class,'Update'])->name('update.category');
+Route::post('/category/delete/{id}',[CategoryController::class,'Delete'])->name('delete.category');
